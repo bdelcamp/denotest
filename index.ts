@@ -1,4 +1,3 @@
-import axios from 'https://cdn.skypack.dev/axios';
 import app from 'https://cdn.skypack.dev/commander';
 import co from 'https://cdn.skypack.dev/co';
 import prompt from 'https://cdn.skypack.dev/co-prompt';
@@ -7,15 +6,17 @@ import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env?dts";
 // https://www.pika.dev/
 
 const env = new Env();
-const api = env.get("API_URI", "asdadsas");
-console.log(api);
+const api = env.get("API_URI");
 
-const API = axios.create({
-  baseURL: api,
-});
+console.log({api});
+
 
 // const { USERNAME, PASSWORD } = process.env;
-const res = await axios.get('/')
+if (api) {
+  const res = await fetch(api);
+  console.log(res.statusText);
+}
+// const res = await API.get('/')
 // const status = async () => {
 //   try {
 //     const res = await axios.get('/');
